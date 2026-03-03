@@ -72,7 +72,7 @@ const TRANSLATIONS = {
     bk_title: 'Book Your <em>Appointment</em>',
     bk_desc: 'Contact us through any of the following channels or fill the form below.',
     bk_c1_label: 'Phone',
-    bk_c1_val: '+201554185041',
+    bk_c1_val: '+201500660183',
     bk_c2_label: 'WhatsApp',
     bk_c2_val: 'Send Message',
     bk_c4_label: 'Landline',
