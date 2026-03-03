@@ -1,0 +1,304 @@
+/* ═══════════════════════════════════════════════════════════════════
+   PROFESSIONAL RTL/LTR SYSTEM
+   Based on W3C Standards - Using ONLY [dir] selectors
+   NO .lang-ar classes - Clean & Scalable
+   ═══════════════════════════════════════════════════════════════════ */
+
+html[dir="rtl"] ul {
+  padding-right: 20px;
+  padding-left: 0;
+  list-style-position: inside;
+  text-align: right;
+}
+
+html[dir="rtl"] ul li {
+  text-align: right;
+}
+
+html[dir="ltr"] ul {
+  padding-left: 20px;
+  padding-right: 0;
+  list-style-position: inside;
+  text-align: left;
+}
+
+html[dir="ltr"] ul li {
+  text-align: left;
+}
+
+html[dir="rtl"] .hero-scroll-hint svg,
+html[dir="rtl"] .swipe-arrow,
+html[dir="rtl"] .scroll-arrow,
+html[dir="rtl"] .doctor-cta svg {
+  transform: scaleX(-1);
+}
+
+.about-feature {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+html[dir="rtl"] .about-feature {
+  flex-direction: row;
+  text-align: right;
+  padding-right: 0;
+}
+
+html[dir="ltr"] .about-feature {
+  flex-direction: row;
+  text-align: left;
+  padding-left: 0;
+}
+
+.feature-content p {
+  font-size: 0.85rem !important;
+}
+
+.feature-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.feature-content h4 {
+  margin-bottom: 6px;
+}
+
+.booking-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+html[dir="rtl"] .booking-contact-item {
+  flex-direction: row;
+  text-align: right;
+}
+
+html[dir="ltr"] .booking-contact-item {
+  flex-direction: row;
+  text-align: left;
+}
+
+
+
+.booking-contact-item:hover {
+  transform: translateX(4px);
+}
+
+html[dir="rtl"] .booking-contact-item:hover {
+  transform: translateX(-4px);
+}
+
+html[dir="rtl"] .doctor-hero-content {
+  flex-direction: row-reverse;
+  text-align: right;
+  justify-content: flex-start;
+}
+
+html[dir="ltr"] .doctor-hero-content {
+  flex-direction: row;
+  text-align: left;
+}
+
+html[dir="rtl"] .doctor-hero-tags {
+  justify-content: flex-start;
+}
+
+html[dir="ltr"] .doctor-hero-tags {
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .doctor-social {
+  inset-inline-start: 16px;
+  inset-inline-end: auto;
+}
+
+html[dir="ltr"] .doctor-social {
+  inset-inline-end: 16px;
+  inset-inline-start: auto;
+}
+
+html[dir="rtl"] .sidebar-social a {
+  flex-direction: row;
+  direction: rtl;
+  text-align: right;
+  justify-content: flex-start;
+}
+
+html[dir="ltr"] .sidebar-social a {
+  flex-direction: row;
+  direction: ltr;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.credentials-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+html[dir="rtl"] .credentials-list,
+html[lang="ar"] .credentials-list,
+body.lang-ar .credentials-list {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  text-align: right !important;
+}
+
+html[dir="ltr"] .credentials-list,
+html[lang="en"] .credentials-list,
+body:not(.lang-ar) .credentials-list {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  text-align: left !important;
+}
+
+html[dir="rtl"] .credentials-list li,
+html[lang="ar"] .credentials-list li,
+body.lang-ar .credentials-list li {
+  flex-direction: row !important;
+  text-align: right !important;
+}
+
+html[dir="ltr"] .credentials-list li,
+html[lang="en"] .credentials-list li,
+body:not(.lang-ar) .credentials-list li {
+  flex-direction: row !important;
+  text-align: left !important;
+}
+
+.doctor-cta svg {
+  transition: transform var(--transition-fast);
+}
+
+.doctor-card:hover .doctor-cta svg {
+  transform: translateX(4px);
+}
+
+html[dir="rtl"] .doctor-card:hover .doctor-cta svg {
+  transform: translateX(-4px) scaleX(-1);
+}
+
+html[dir="ltr"] .doctor-card:hover .doctor-cta svg {
+  transform: translateX(4px);
+}
+
+html[dir="ltr"] .specialty-link svg {
+  transform: rotate(0deg);
+}
+
+html[dir="rtl"] .specialty-link svg {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] .whatsapp-float {
+  inset-inline-end: 28px;
+}
+
+html[dir="ltr"] .whatsapp-float {
+  inset-inline-end: 28px;
+}
+
+@media (max-width: 768px) {
+  .about-grid,
+  .booking-grid,
+  .doctor-hero-content {
+    flex-direction: column !important;
+  }
+}
+
+@media (min-width: 769px) {
+  html[dir="rtl"] .doctor-hero-content,
+  html[lang="ar"] .doctor-hero-content,
+  body.lang-ar .doctor-hero-content {
+    flex-direction: row !important;
+    text-align: right !important;
+    gap: 0px !important;
+    justify-content: flex-end !important;
+  }
+  
+  html[dir="ltr"] .doctor-hero-content,
+  html[lang="en"] .doctor-hero-content,
+  body:not(.lang-ar) .doctor-hero-content {
+    flex-direction: row !important;
+    text-align: left !important;
+  }
+  
+  html[dir="rtl"] .doctor-hero-specialty,
+  html[lang="ar"] .doctor-hero-specialty,
+  body.lang-ar .doctor-hero-specialty,
+  html[dir="rtl"] .doctor-hero-name,
+  html[lang="ar"] .doctor-hero-name,
+  body.lang-ar .doctor-hero-name,
+  html[dir="rtl"] .doctor-hero-info,
+  html[lang="ar"] .doctor-hero-info,
+  body.lang-ar .doctor-hero-info {
+    text-align: right !important;
+    padding-left: 0;
+    padding-right: 24px;
+  }
+  
+  html[dir="ltr"] .doctor-hero-specialty,
+  html[lang="en"] .doctor-hero-specialty,
+  body:not(.lang-ar) .doctor-hero-specialty,
+  html[dir="ltr"] .doctor-hero-name,
+  html[lang="en"] .doctor-hero-name,
+  body:not(.lang-ar) .doctor-hero-name,
+  html[dir="ltr"] .doctor-hero-info,
+  html[lang="en"] .doctor-hero-info,
+  body:not(.lang-ar) .doctor-hero-info {
+    text-align: left !important;
+  }
+  
+  html[dir="rtl"] .doctor-hero-tags,
+  html[lang="ar"] .doctor-hero-tags,
+  body.lang-ar .doctor-hero-tags {
+    justify-content: flex-end !important;
+  }
+  
+  hhtml[dir="ltr"] .doctor-hero-tags,
+  html[lang="en"] .doctor-hero-tags,
+  body:not(.lang-ar) .doctor-hero-tags {
+    justify-content: flex-start !important;
+  }
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+}
+
+html[dir="rtl"] .form-group input,
+html[dir="rtl"] .form-group textarea,
+html[dir="rtl"] .form-group select {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .form-group input::placeholder,
+html[dir="rtl"] .form-group textarea::placeholder {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] input[type="tel"] {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="ltr"] .form-group input,
+html[dir="ltr"] .form-group textarea,
+html[dir="ltr"] .form-group select {
+  direction: ltr;
+  text-align: left;
+}
+
+html[dir="ltr"] .form-group input::placeholder,
+html[dir="ltr"] .form-group textarea::placeholder {
+  direction: ltr;
+  text-align: left;
+}

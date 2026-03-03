@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>فروع عيادات عز العرب | Ezzelarab Clinics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #F5E1A4;
+      --gold-dim: rgba(201,168,76,0.15);
+      --bg: #0d0b08;
+      --text: #f0ead8;
+      --text-muted: rgba(240,234,216,0.5);
+      --border: rgba(201,168,76,0.2);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 90% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(13,11,8,0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-back {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none; color: var(--text-muted);
+      font-size: 0.75rem; letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo img { width: 40px; height: 40px; border-radius: 50%; }
+    .nav-logo-text span:first-child { display:block; font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--gold); }
+    .nav-logo-text span:last-child  { display:block; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.06em; }
+    .lang-btn {
+      padding: 6px 16px; border: 1px solid var(--border);
+      background: transparent; color: var(--text-muted);
+      font-size: 0.7rem; letter-spacing: 0.1em;
+      border-radius: 4px; cursor: pointer; font-family: 'Cairo', sans-serif;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── Page Hero ── */
+    .page-hero {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 70px 24px 50px;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 14px;
+      font-size: 0.62rem; letter-spacing: 0.28em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .eyebrow-line { width: 36px; height: 1px; background: var(--gold); opacity: 0.4; }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 300;
+      line-height: 1.2; margin-bottom: 14px;
+    }
+    .page-title em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .page-subtitle { font-size: 0.82rem; color: var(--text-muted); line-height: 1.8; max-width: 480px; margin: 0 auto; }
+
+    /* ── Divider ── */
+    .divider { display:flex; align-items:center; gap:14px; max-width:260px; margin: 36px auto; }
+    .divider-line { flex:1; height:1px; background:var(--border); }
+    .divider-diamond { width:5px; height:5px; background:var(--gold); transform:rotate(45deg); }
+
+    /* ── Section label ── */
+    .section-label {
+      position: relative; z-index: 1;
+      max-width: 920px; margin: 0 auto 16px;
+      padding: 0 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label-line { height: 1px; flex: 1; background: var(--border); }
+    .section-label-text {
+      font-size: 0.6rem; letter-spacing: 0.22em; color: var(--gold);
+      text-transform: uppercase; font-weight: 700; white-space: nowrap;
+    }
+    .section-label-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    /* ── Grids ── */
+    .branches-grid {
+      position: relative; z-index: 1;
+      max-width: 920px; margin: 0 auto;
+      padding: 0 24px 32px;
+      display: grid;
+      gap: 20px;
+    }
+    .grid-single { grid-template-columns: 1fr; max-width: 620px; }
+    .grid-double { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+    /* ── Branch Card ── */
+    .branch-card {
+      position: relative;
+      background: linear-gradient(145deg, rgba(255,255,255,0.025), rgba(201,168,76,0.025));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 26px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .branch-card::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 100px; height: 100px;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .branch-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(201,168,76,0.38);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+    }
+    .branch-card.featured {
+      border-color: rgba(201,168,76,0.32);
+      background: linear-gradient(145deg, rgba(201,168,76,0.06), rgba(201,168,76,0.02));
+    }
+    .branch-card.featured::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .branch-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300;
+      color: rgba(201,168,76,0.1);
+      position: absolute; top: 12px; left: 20px;
+      line-height: 1; pointer-events: none;
+    }
+
+    .branch-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201,168,76,0.22);
+      border-radius: 20px;
+      padding: 3px 11px;
+      font-size: 0.6rem; letter-spacing: 0.14em;
+      color: var(--gold); font-weight: 700; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .branch-badge.featured-badge {
+      background: rgba(201,168,76,0.2);
+      border-color: rgba(201,168,76,0.42);
+    }
+
+    .branch-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.42rem; font-weight: 400;
+      color: var(--text); margin-bottom: 4px; line-height: 1.25;
+    }
+
+    /* Doctor chips */
+    .branch-doctors {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin: 10px 0 18px;
+    }
+    .doctor-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 6px; padding: 4px 10px;
+      font-size: 0.67rem; color: rgba(240,234,216,0.7);
+    }
+    .chip-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+    .dot-internal { background: #7ec8a0; }
+    .dot-derm     { background: #e8a87c; }
+    .dot-dental   { background: #89c4e1; }
+
+    /* Hours */
+    .branch-hours {
+      display: flex; align-items: flex-start; gap: 8px;
+      background: rgba(201,168,76,0.06);
+      border-right: 2px solid var(--gold);
+      border-radius: 4px; padding: 9px 13px;
+      margin-bottom: 18px;
+    }
+    .h-icon { font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
+    .h-text { font-size: 0.7rem; color: var(--gold); line-height: 1.55; font-weight: 600; }
+
+    /* Phones */
+    .branch-phones { display: flex; flex-direction: column; gap: 8px; }
+    .phone-link {
+      display: flex; align-items: center; gap: 11px;
+      text-decoration: none;
+      padding: 10px 14px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(201,168,76,0.08);
+      border-radius: 9px;
+      transition: all 0.2s;
+    }
+    .phone-link:hover {
+      background: rgba(201,168,76,0.1);
+      border-color: rgba(201,168,76,0.28);
+      transform: translateX(-3px);
+    }
+    .phone-icon {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(201,168,76,0.1);
+      border-radius: 7px; font-size: 0.95rem; flex-shrink: 0;
+    }
+    .phone-type  { font-size: 0.57rem; letter-spacing: 0.13em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px; }
+    .phone-number { font-size: 0.88rem; color: var(--text); font-weight: 600; letter-spacing: 0.03em; direction: ltr; }
+
+    .map-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 16px; text-decoration: none; color: var(--gold);
+      font-size: 0.66rem; letter-spacing: 0.1em; font-weight: 600;
+      border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 2px;
+      transition: all 0.2s;
+    }
+    .map-link:hover { border-color: var(--gold); gap: 10px; }
+
+    /* CTA */
+    .page-cta { position:relative;z-index:1; text-align:center; padding: 8px 24px 80px; }
+    .cta-note { font-size:0.72rem; color:var(--text-muted); margin-bottom:18px; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, #C9A84C, #a8893a);
+      color: #0d0b08; padding: 13px 34px; border-radius: 6px;
+      text-decoration: none; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: all 0.3s; box-shadow: 0 8px 24px rgba(201,168,76,0.22);
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(201,168,76,0.38); }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.6s ease both; }
+    .d1{animation-delay:0.05s} .d2{animation-delay:0.15s}
+    .d3{animation-delay:0.25s} .d4{animation-delay:0.35s}
+    .d5{animation-delay:0.45s}
+
+    /* LTR */
+    [dir="ltr"] .branch-hours { border-right:none; border-left:2px solid var(--gold); }
+    [dir="ltr"] .phone-link:hover { transform:translateX(3px); }
+    [dir="ltr"] .branch-num { left:auto; right:20px; }
+
+    @media (max-width:600px) {
+      nav { padding:14px 18px; }
+      .page-hero { padding:56px 18px 38px; }
+      .branches-grid { padding:0 14px 24px; }
+      .branch-card { padding:22px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-back" id="back-link">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+      <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span id="back-text">العودة للرئيسية</span>
+  </a>
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="Logo" />
+    <div class="nav-logo-text">
+      <span>Ezzelarab Clinics</span>
+      <span>عيادات عز العرب</span>
+    </div>
+  </a>
+  <button class="lang-btn" id="lang-toggle-btn">English</button>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero fade-up">
+  <div class="eyebrow">
+    <div class="eyebrow-line"></div>
+    <span id="eyebrow-text">عيادات عز العرب</span>
+    <div class="eyebrow-line"></div>
+  </div>
+  <h1 class="page-title"><em id="title-main">فروعنا</em></h1>
+  <p class="page-subtitle" id="hero-sub">تخدمكم في أكثر من موقع بنفس المستوى من التميز الطبي</p>
+</div>
+
+<div class="divider fade-up d1">
+  <div class="divider-line"></div>
+  <div class="divider-diamond"></div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- ══ الفرع الرئيسي: تراس مول ══ -->
+<div class="section-label fade-up d2">
+  <div class="section-label-dot"></div>
+  <span class="section-label-text" id="lbl-main-branch">الفرع الرئيسي — جميع الاطباء</span>
+  <div class="section-label-line"></div>
+</div>
+
+<div class="branches-grid grid-single fade-up d2">
+  <div class="branch-card featured">
+    <div class="branch-num">١</div>
+    <div class="branch-badge featured-badge">⭐ <span id="b1-badge">الشروق</span></div>
+    <div class="branch-name" id="b1-name">تراس مول — مدينة الشروق</div>
+    <div class="branch-doctors">
+      <div class="doctor-chip"><span class="chip-dot dot-internal"></span><span id="b1-d1">د. محمد — باطنة وجهاز هضمي وكبد</span></div>
+      <div class="doctor-chip"><span class="chip-dot dot-derm"></span><span id="b1-d2">د. مها — جلدية وتجميل</span></div>
+      <div class="doctor-chip"><span class="chip-dot dot-dental"></span><span id="b1-d3">د. مروة — أسنان</span></div>
+    </div>
+    <div class="branch-hours">
+      <span class="h-icon">⏰</span>
+      <span class="h-text" id="b1-hours">يومياً من ٩ م – ١١ م (ماعدا الخميس والجمعة)</span>
+    </div>
+    <div class="branch-phones">
+      <a href="tel:+20220388199" class="phone-link">
+        <div class="phone-icon">☎️</div>
+        <div><div class="phone-type" id="b1-lbl-land">أرضي</div><div class="phone-number">0220388199</div></div>
+      </a>
+      <a href="tel:+201554185041" class="phone-link">
+        <div class="phone-icon">📱</div>
+        <div><div class="phone-type" id="b1-lbl-mob1">موبايل وواتساب</div><div class="phone-number">01554185041</div></div>
+      </a>
+      <a href="tel:+201124509713" class="phone-link">
+        <div class="phone-icon">📱</div>
+        <div><div class="phone-type" id="b1-lbl-mob2">موبايل وواتساب</div><div class="phone-number">01124509713</div></div>
+      </a>
+    </div>
+    <a href="https://g.co/kgs/gFTfPJr" target="_blank" class="map-link">
+      <span id="b1-map">الموقع على الخريطة</span>
+      <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ══ فروع د. محمد ══ -->
+<div class="section-label fade-up d3" style="margin-top:16px;">
+  <div class="section-label-dot"></div>
+  <span class="section-label-text" id="lbl-dr-branches">فروع د. محمد — باطنة وجهاز هضمي وكبد</span>
+  <div class="section-label-line"></div>
+</div>
+
+<div class="branches-grid grid-double fade-up d4">
+
+  <!-- مصر الجديدة -->
+  <div class="branch-card">
+    <div class="branch-num">٢</div>
+    <div class="branch-badge"><span id="b2-badge">مصر الجديدة</span></div>
+    <div class="branch-name" id="b2-name">٦ ش بطرس غالي<br/>مصر الجديدة</div>
+    <div class="branch-doctors">
+      <div class="doctor-chip"><span class="chip-dot dot-internal"></span><span id="b2-d1">د. محمد — باطنة وجهاز هضمي وكبد</span></div>
+    </div>
+    <div class="branch-hours">
+      <span class="h-icon">⏰</span>
+      <span class="h-text" id="b2-hours">يومياً من ٤ ظ – ٧ م (ماعدا الخميس والجمعة)</span>
+    </div>
+    <div class="branch-phones">
+      <a href="tel:+20222570575" class="phone-link">
+        <div class="phone-icon">☎️</div>
+        <div><div class="phone-type" id="b2-lbl-land">أرضي</div><div class="phone-number">0222570575</div></div>
+      </a>
+      <a href="tel:+201500660183" class="phone-link">
+        <div class="phone-icon">📱</div>
+        <div><div class="phone-type" id="b2-lbl-mob">موبايل</div><div class="phone-number">01115926667</div></div>
+      </a>
+    </div>
+    <a href="https://maps.app.goo.gl/TA6RfwDDK1JZx7Nz7" target="_blank" class="map-link">
+      <span id="b2-map">الموقع على الخريطة</span>
+      <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <!-- الدقي -->
+  <div class="branch-card">
+    <div class="branch-num">٣</div>
+    <div class="branch-badge"><span id="b3-badge">الدقي</span></div>
+    <div class="branch-name" id="b3-name">عيادات مصر سكوب<br/>ميدان الدقي</div>
+    <div style="font-size:0.67rem;color:var(--text-muted);margin:-4px 0 10px;" id="b3-sub">١٠٧ ش التحرير، بجوار بنك مصر</div>
+    <div class="branch-doctors">
+      <div class="doctor-chip"><span class="chip-dot dot-internal"></span><span id="b3-d1">د. محمد — باطنة وجهاز هضمي وكبد</span></div>
+    </div>
+    <div class="branch-hours">
+      <span class="h-icon">⏰</span>
+      <span class="h-text" id="b3-hours">الخميس فقط — من ٦ م إلى ٩ م</span>
+    </div>
+    <div class="branch-phones">
+      
+      <a href="tel:+201500660183" class="phone-link">
+        <div class="phone-icon">📱</div>
+        <div><div class="phone-type" id="b3-lbl-mob2">موبايل</div><div class="phone-number">01100063665</div></div>
+      </a>
+    </div>
+    <a href="https://maps.app.goo.gl/nNznoydx43pWPsJL7" target="_blank" class="map-link">
+      <span id="b3-map">الموقع على الخريطة</span>
+      <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="page-cta fade-up d5">
+  <p class="cta-note" id="cta-note">احجز موعدك عبر واتساب</p>
+  <a href="https://wa.me/201554185041?text=مرحباً،%20أريد%20حجز%20موعد" target="_blank" class="cta-btn">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    <span id="cta-btn-text">احجز عبر واتساب</span>
+  </a>
+</div>
+
+<script>
+const T = {
+  ar: {
+    dir:'rtl', lang:'ar', langBtn:'English',
+    backText:'العودة للرئيسية',
+    eyebrow:'عيادات عز العرب',
+    titleMain:'فروعنا',
+    heroSub:'تخدمكم في أكثر من موقع بنفس المستوى من التميز الطبي',
+    lblMainBranch:'الفرع الرئيسي — جميع الاطباء',
+    lblDrBranches:'فروع د. محمد — باطنة وجهاز هضمي وكبد',
+    b1Badge:'الشروق', b1Name:'تراس مول — مدينة الشروق',
+    b1D1:'د. محمد — باطنة وجهاز هضمي وكبد',
+    b1D2:'د. مها — جلدية وتجميل',
+    b1D3:'د. مروة — أسنان',
+    b1Hours:'يومياً من ٩ م – ١١ م (ماعدا الخميس والجمعة)',
+    b1LblLand:'أرضي', b1LblMob:'موبايل وواتساب', b1Map:'الموقع على الخريطة',
+    b2Badge:'مصر الجديدة', b2Name:'٦ ش بطرس غالي<br/>مصر الجديدة',
+    b2D1:'د. محمد — باطنة وجهاز هضمي وكبد',
+    b2Hours:'يومياً من ٤ ظ – ٧ م (ماعدا الخميس والجمعة)',
+    b2LblLand:'أرضي', b2LblMob:'موبايل', b2Map:'الموقع على الخريطة',
+    b3Badge:'الدقي', b3Name:'عيادات مصر سكوب<br/>ميدان الدقي',
+    b3Sub:'١٠٧ ش التحرير، بجوار بنك مصر',
+    b3D1:'د. محمد — باطنة وجهاز هضمي وكبد',
+    b3Hours:'الخميس فقط — من ٦ م إلى ٩ م',
+    b3LblMob:'موبايل', b3Map:'الموقع على الخريطة',
+    ctaNote:'احجز موعدك عبر واتساب', ctaBtn:'احجز عبر واتساب',
+  },
+  en: {
+    dir:'ltr', lang:'en', langBtn:'عربي',
+    backText:'Back to Home',
+    eyebrow:'Ezzelarab Clinics',
+    titleMain:'Our Branches',
+    heroSub:'Serving you across multiple locations with the same standard of excellence',
+    lblMainBranch:'Main Branch — All Three Doctors',
+    lblDrBranches:"Dr. Mohamed's Branches — Internal Medicine & Gastroenterology",
+    b1Badge:'El Shorouk', b1Name:'Terrace Mall — El Shorouk City',
+    b1D1:'Dr. Mohamed — Internal Medicine & Hepatology',
+    b1D2:'Dr. Maha — Dermatology & Aesthetics',
+    b1D3:'Dr. Marwa — Dental Medicine',
+    b1Hours:'Daily: 9 PM – 11 PM (except Thu & Fri)',
+    b1LblLand:'Landline', b1LblMob:'Mobile & WhatsApp', b1Map:'View on Map',
+    b2Badge:'Heliopolis', b2Name:'6 Botros Ghali St.<br/>Heliopolis',
+    b2D1:'Dr. Mohamed — Internal Medicine & Hepatology',
+    b2Hours:'Daily: 4 PM – 7 PM (except Thu & Fri)',
+    b2LblLand:'Landline', b2LblMob:'Mobile', b2Map:'View on Map',
+    b3Badge:'Dokki', b3Name:'Masr Scope Clinics<br/>Dokki Square',
+    b3Sub:'107 El Tahrir St., next to Banque Misr',
+    b3D1:'Dr. Mohamed — Internal Medicine & Hepatology',
+    b3Hours:'Thursdays only — 6 PM to 9 PM',
+    b3LblMob:'Mobile', b3Map:'View on Map',
+    ctaNote:'Book your appointment via WhatsApp', ctaBtn:'Book via WhatsApp',
+  }
+};
+
+let lang = localStorage.getItem('ezzelarab_lang') || 'ar';
+
+function applyLang(l) {
+  lang = l;
+  localStorage.setItem('ezzelarab_lang', l);
+  const c = T[l];
+  document.documentElement.setAttribute('dir', c.dir);
+  document.documentElement.setAttribute('lang', c.lang);
+  document.getElementById('lang-toggle-btn').textContent = c.langBtn;
+  document.getElementById('back-text').textContent = c.backText;
+  document.getElementById('eyebrow-text').textContent = c.eyebrow;
+  document.getElementById('title-main').textContent = c.titleMain;
+  document.getElementById('hero-sub').textContent = c.heroSub;
+  document.getElementById('lbl-main-branch').textContent = c.lblMainBranch;
+  document.getElementById('lbl-dr-branches').textContent = c.lblDrBranches;
+  document.getElementById('b1-badge').textContent = c.b1Badge;
+  document.getElementById('b1-name').textContent = c.b1Name;
+  document.getElementById('b1-d1').textContent = c.b1D1;
+  document.getElementById('b1-d2').textContent = c.b1D2;
+  document.getElementById('b1-d3').textContent = c.b1D3;
+  document.getElementById('b1-hours').textContent = c.b1Hours;
+  document.getElementById('b1-lbl-land').textContent = c.b1LblLand;
+  document.getElementById('b1-lbl-mob1').textContent = c.b1LblMob;
+  document.getElementById('b1-lbl-mob2').textContent = c.b1LblMob;
+  document.getElementById('b1-map').textContent = c.b1Map;
+  document.getElementById('b2-badge').textContent = c.b2Badge;
+  document.getElementById('b2-name').innerHTML = c.b2Name;
+  document.getElementById('b2-d1').textContent = c.b2D1;
+  document.getElementById('b2-hours').textContent = c.b2Hours;
+  document.getElementById('b2-lbl-land').textContent = c.b2LblLand;
+  document.getElementById('b2-lbl-mob').textContent = c.b2LblMob;
+  document.getElementById('b2-map').textContent = c.b2Map;
+  document.getElementById('b3-badge').textContent = c.b3Badge;
+  document.getElementById('b3-name').innerHTML = c.b3Name;
+  document.getElementById('b3-sub').textContent = c.b3Sub;
+  document.getElementById('b3-d1').textContent = c.b3D1;
+  document.getElementById('b3-hours').textContent = c.b3Hours;
+  document.getElementById('b3-lbl-mob1').textContent = c.b3LblMob;
+  document.getElementById('b3-lbl-mob2').textContent = c.b3LblMob;
+  document.getElementById('b3-map').textContent = c.b3Map;
+  document.getElementById('cta-note').textContent = c.ctaNote;
+  document.getElementById('cta-btn-text').textContent = c.ctaBtn;
+}
+
+document.getElementById('lang-toggle-btn').addEventListener('click', () => {
+  applyLang(lang === 'ar' ? 'en' : 'ar');
+});
+
+applyLang(lang);
+</script>
+</body>
+</html>
